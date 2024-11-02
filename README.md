@@ -1,1 +1,1 @@
-# parallel-scraper
+# parallel-scraper-go
