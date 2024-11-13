@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"bufio"
 	"os"
+	"scraper/colly"
 )
 
 func main(){
@@ -23,6 +24,7 @@ func main(){
 		scanner.Scan()
 		text := scanner.Text()
 		if text == "1"{
+			colly.Scrap(theme)
 			fmt.Println("//TODO")
 		}else if text == "2"{
 			fmt.Println("//TODO")
