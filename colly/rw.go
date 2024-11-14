@@ -45,7 +45,7 @@ func ReadComments(filename string) []string {
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		if strings.HasPrefix(line, "Comment") {
+		if strings.HasPrefix(line, "COMMENT###") {
 			if inCommentBlock && currentComment != "" {
 				comments = append(comments, currentComment)
 				currentComment = ""

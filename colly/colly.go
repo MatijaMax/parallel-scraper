@@ -87,7 +87,7 @@ func Scrap(topic string, path string) {
 
 		for i, comment := range story.CommentTexts {
 			fmt.Printf("Comment %d: %s\n", i+1, comment)
-			c := fmt.Sprintf("###COMMENT: %s\n", comment)
+			c := fmt.Sprintf("COMMENT### %s\n", comment)
 			toFile = append(toFile, c)
 		}
 		toFile = toFile[1:]
