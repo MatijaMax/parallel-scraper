@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"os"
 	"scraper/colly"
 )
 
-func main(){
+func main() {
 	fmt.Println("PARALLEL SCRAPER - SCHNEIDER ELECTRIC 2024")
 	scanner := bufio.NewScanner(os.Stdin)
 	running := true
@@ -17,22 +17,22 @@ func main(){
 	fmt.Println("Unesite temu za scraping:")
 	scanner.Scan()
 	theme = scanner.Text()
-	fmt.Println("Odabrali ste \"",theme,"\"")
+	fmt.Println("Odabrali ste \"", theme, "\"")
 	for running {
 		fmt.Println()
 		fmt.Println("1.Pokreni scraper \n2.Pokreni analizu komentara \n3.Izlaz \n")
 		scanner.Scan()
 		text := scanner.Text()
-		if text == "1"{
-			colly.Scrap(theme)
-			fmt.Println("//TODO")
-		}else if text == "2"{
-			fmt.Println("//TODO")
-		}else if text == "3"{
+		if text == "1" {
+			colly.Scrap(theme, "./data/comments.txt")
+		} else if text == "2" {
+			comments := colly.ReadComments("./data/comments.txt")
+			fmt.Println(comments)
+		} else if text == "3" {
 			running = false
 			fmt.Println("Izlaz...")
-		}else {
-			fmt.Println("Pogresan unos, pokusajte ponovo!")			
+		} else {
+			fmt.Println("Pogresan unos, pokusajte ponovo!")
 		}
 	}
 
