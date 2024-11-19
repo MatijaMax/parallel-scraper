@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"scraper/colly"
+	"scraper/nlp"
 )
 
 func main() {
@@ -27,7 +28,11 @@ func main() {
 			colly.Scrap(theme, "./data/comments.txt")
 		} else if text == "2" {
 			comments := colly.ReadComments("./data/comments.txt")
-			fmt.Println(comments)
+			comments = nlp.CleanData(comments)
+			counts, percentages := nlp.AnalyzeComments(comments)
+			fmt.Println("Rezultati sentiment analize:")
+			fmt.Printf("Procenat pozitivnih komentara: %d comments (%.2f%%)\n", counts["Positive"], percentages["Positive"])
+			fmt.Printf("Procenat negativnih komentara: %d comments (%.2f%%)\n", counts["Negative"], percentages["Negative"])
 		} else if text == "3" {
 			running = false
 			fmt.Println("Izlaz...")

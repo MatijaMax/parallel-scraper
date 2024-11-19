@@ -39,33 +39,27 @@ func ReadComments(filename string) []string {
 
 	var comments []string
 	var currentComment string
-	var inCommentBlock bool
+	var newLine bool
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
 
 		if strings.HasPrefix(line, "COMMENT###") {
-			if inCommentBlock && currentComment != "" {
+			if newLine {
 				comments = append(comments, currentComment)
-				currentComment = ""
+				currentComment = line
+			} else {
+				currentComment = line
+				newLine = true
 			}
-
-			inCommentBlock = true
-		}
-
-		if inCommentBlock {
-			currentComment += line + "\n"
-		}
-
-		if line == "" && inCommentBlock {
-			inCommentBlock = false
+		} else {
+			currentComment = fmt.Sprintf("%s\n%s", currentComment, line)
 		}
 	}
 
 	if currentComment != "" {
 		comments = append(comments, currentComment)
 	}
-
 	return comments
 }
