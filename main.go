@@ -21,13 +21,16 @@ func main() {
 	fmt.Println("Odabrali ste \"", theme, "\"")
 	for running {
 		fmt.Println()
-		fmt.Println("1.Pokreni scraper \n2.Pokreni analizu komentara \n3.Izlaz \n")
+		fmt.Println("1.Pokreni scraper \n2.Pokreni analizu komentara \n3.Izlaz")
 		scanner.Scan()
 		text := scanner.Text()
 		if text == "1" {
 			colly.Scrap(theme, "./data/comments.txt")
 		} else if text == "2" {
-			comments := colly.ReadComments("./data/comments.txt")
+			comments, err := colly.ReadComments("./data/comments.txt")
+			if err != nil {
+				fmt.Println("Greska pri citanju!")
+			}
 			comments = nlp.CleanData(comments)
 			counts, percentages := nlp.AnalyzeComments(comments)
 			fmt.Println("Rezultati sentiment analize:")

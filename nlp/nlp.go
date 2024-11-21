@@ -9,7 +9,6 @@ import (
 
 func CleanData(comments []string) []string {
 	var newComments []string
-	fmt.Printf("DUZINA %d", len(comments))
 	for i := 0; i < len(comments); i++ {
 		comment := comments[i]
 		line := strings.SplitN(comment, "###", 2)

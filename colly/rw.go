@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func WriteComments(filename string, arr []string) {
+func WriteComments(filename string, arr []string) error {
 
 	file, err := os.OpenFile(filename, os.O_WRONLY|os.O_TRUNC, os.ModeAppend)
 	if err != nil {
@@ -28,9 +28,10 @@ func WriteComments(filename string, arr []string) {
 		}
 	}
 	writer.Flush()
+	return err
 }
 
-func ReadComments(filename string) []string {
+func ReadComments(filename string) ([]string, error) {
 	file, err := os.OpenFile(filename, os.O_RDONLY, os.ModeExclusive)
 	if err != nil {
 		fmt.Println("Greska pri otvaranju fajla!")
@@ -61,5 +62,5 @@ func ReadComments(filename string) []string {
 	if currentComment != "" {
 		comments = append(comments, currentComment)
 	}
-	return comments
+	return comments, err
 }
