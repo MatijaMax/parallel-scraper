@@ -13,17 +13,15 @@ This application is a simple **scraper** for Reddit, developed in **Go**. It all
 ## Technologies
 
 - **Go (Golang)**: The programming language used to develop the application.
-- **Colly**: A popular Go library for web scraping.
-- **Goroutines**: Using Go's goroutines for parallel scraping of multiple Reddit posts.
-- **NLP Go**: A Go library for Natural Language Processing, used for sentiment analysis (positive/negative) of the comments.
+- **Colly**: A popular Go library for parallel web scraping.
+- **Sentiment**: A Go library for Natural Language Processing, used for sentiment analysis (positive/negative) of the comments.
 - **Console-based UI**: An interactive console application without the need for a graphical user interface.
 
 ## How the Application Works
 
 1. **Reddit Search**: The user enters a topic (e.g., "Trump win"), and the application searches Reddit for posts containing that topic.
-2. **Scraping Posts and Comments**: Using Colly, the application first scrapes Reddit search results for posts related to the topic, then visits each post to collect comments.
-3. **Parallel Scraping**: The application uses goroutines to scrape multiple posts simultaneously, making the scraping process faster and more efficient.
-4. **Sentiment Analysis**: The comments collected are processed using NLP to determine whether they are positive or negative.
-5. **Displaying Results**: The results of sentiment analysis are displayed directly in the console.
+2. **Scraping Posts and Comments**: Using Colly, the application first scrapes Reddit search results for posts related to the topic, then visits each post to collect comments. 
+3. **Sentiment Analysis**: The comments collected are processed using NLP to determine whether they are positive or negative.
+4. **Displaying Results**: The results of sentiment analysis are displayed directly in the console.
 
 
