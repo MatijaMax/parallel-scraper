@@ -7,8 +7,11 @@ import (
 	"github.com/vicanso/go-charts/v2"
 )
 
-func SaveChart(buf []byte) error {
-	file := filepath.Join("data", "pie-chart.png")
+func SaveChart(buf []byte, name string) error {
+	file := filepath.Join("data", name)
+	if name == "test-pie-chart.png" {
+		file = filepath.Join("../data", name)
+	}
 	err := os.WriteFile(file, buf, 0600)
 	if err != nil {
 		return err
@@ -16,7 +19,7 @@ func SaveChart(buf []byte) error {
 	return nil
 }
 
-func CreatePieChart(pos float64, neg float64) error {
+func CreatePieChart(pos float64, neg float64, name string) error {
 	values := []float64{
 		pos,
 		neg,
@@ -52,7 +55,7 @@ func CreatePieChart(pos float64, neg float64) error {
 	if err != nil {
 		panic(err)
 	}
-	err = SaveChart(buf)
+	err = SaveChart(buf, name)
 	if err != nil {
 		panic(err)
 	}

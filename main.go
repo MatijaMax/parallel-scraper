@@ -33,10 +33,11 @@ func main() {
 			}
 			comments = nlp.CleanData(comments)
 			counts, percentages := nlp.AnalyzeComments(comments)
+			name := "pie-chart.png"
 			fmt.Println("Rezultati sentiment analize:")
 			fmt.Printf("Procenat pozitivnih komentara: %d comments (%.2f%%)\n", counts["Positive"], percentages["Positive"])
 			fmt.Printf("Procenat negativnih komentara: %d comments (%.2f%%)\n", counts["Negative"], percentages["Negative"])
-			nlp.CreatePieChart(percentages["Positive"], percentages["Negative"])
+			nlp.CreatePieChart(percentages["Positive"], percentages["Negative"], name)
 		} else if text == "3" {
 			running = false
 			fmt.Println("Izlaz...")
